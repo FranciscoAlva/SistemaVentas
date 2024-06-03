@@ -1,8 +1,14 @@
 package Vista;
 
+import Modelo.Cliente;
+import Modelo.ClienteDAO;
+import javax.swing.JOptionPane;
+
 
 public class Sistema extends javax.swing.JFrame {
 
+    Cliente cl = new Cliente();
+    ClienteDAO client = new ClienteDAO();
    
     public Sistema() {
         initComponents();
@@ -414,6 +420,11 @@ public class Sistema extends javax.swing.JFrame {
 
         btnGuardarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/GuardarTodo.png"))); // NOI18N
         btnGuardarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarClienteActionPerformed(evt);
+            }
+        });
 
         btnEditarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Actualizar (2).png"))); // NOI18N
         btnEditarCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -909,6 +920,21 @@ public class Sistema extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarClienteActionPerformed
+        
+        if (!"".equals(txtDNICliente.getText()) || !"".equals(txtNombreCliente.getText()) || !"".equals(txtTelefonoCliente.getText()) || !"".equals(txtDireccionCliente.getText())){
+            cl.setDni(txtDNICliente.getText());
+            cl.setNombre(txtNombreCliente.getText());
+            cl.setTelefono(txtTelefonoCliente.getText());
+            cl.setDireccion(txtDireccionCliente.getText());
+            cl.setRazon(txtRazonCliente.getText());
+            client.RegistarCliente(cl);
+            JOptionPane.showMessageDialog(null, "Cliente Registrado");
+        }else{
+            JOptionPane.showMessageDialog(null, "Existen Campos Vacios");
+        }
+    }//GEN-LAST:event_btnGuardarClienteActionPerformed
 
     
     public static void main(String args[]) {
