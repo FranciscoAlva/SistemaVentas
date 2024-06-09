@@ -619,6 +619,11 @@ public class Sistema extends javax.swing.JFrame {
                 "ID", "CIF", "NOMBRE", "TELEFONO", "DIRECCION", "RAZON SOCIAL"
             }
         ));
+        TableProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableProveedorMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(TableProveedor);
         if (TableProveedor.getColumnModel().getColumnCount() > 0) {
             TableProveedor.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -645,6 +650,11 @@ public class Sistema extends javax.swing.JFrame {
 
         btnEliminarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar_1.png"))); // NOI18N
         btnEliminarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProveedorActionPerformed(evt);
+            }
+        });
 
         txtIDProveedor.setEditable(false);
 
@@ -729,14 +739,11 @@ public class Sistema extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGuardarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnNuevoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(14, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnEliminarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(btnEliminarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab3", jPanel4);
@@ -1108,6 +1115,9 @@ public class Sistema extends javax.swing.JFrame {
             pr.setDireccion(txtDireccionProveedor.getText());
             pr.setRazon(txtRazonProveedor.getText());
             PrDAO.RegistrarProveedor(pr);
+            LimpiarTable();
+            ListarProveedor();
+            LimpiarProveedor();
             JOptionPane.showMessageDialog(null, "PROVEEDOR REGISTRADO");
         }else {
             JOptionPane.showMessageDialog(null, "EXISTEN CAMPOS VACIOS");
@@ -1120,6 +1130,33 @@ public class Sistema extends javax.swing.JFrame {
         ListarProveedor();
         jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void TableProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableProveedorMouseClicked
+        
+        int fila = TableProveedor.rowAtPoint(evt.getPoint());
+        txtIDProveedor.setText(TableProveedor.getValueAt(fila,0).toString());
+        txtCIFProveedor.setText(TableProveedor.getValueAt(fila,1).toString());
+        txtNombreProveedor.setText(TableProveedor.getValueAt(fila,2).toString());
+        txtTelefonoProveedor.setText(TableProveedor.getValueAt(fila,3).toString());
+        txtDireccionProveedor.setText(TableProveedor.getValueAt(fila,4).toString());
+        txtRazonProveedor.setText(TableProveedor.getValueAt(fila,5).toString());
+    }//GEN-LAST:event_TableProveedorMouseClicked
+
+    private void btnEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProveedorActionPerformed
+        
+        if(!"".equals(txtIDProveedor.getText())){
+            int pregunta = JOptionPane.showConfirmDialog(null, "ELIMINAR PROVEEDOR");
+            if(pregunta ==  0){
+                int id = Integer.parseInt(txtIDProveedor.getText());
+                PrDAO.EliminarProveedor(id);
+                LimpiarTable();
+                ListarProveedor();
+                LimpiarProveedor();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "SELECCIONA UNA FILA");
+        }
+    }//GEN-LAST:event_btnEliminarProveedorActionPerformed
 
     public static void main(String args[]) {
 
@@ -1269,6 +1306,15 @@ public class Sistema extends javax.swing.JFrame {
         txtTelefonoCliente.setText("");
         txtDireccionCliente.setText("");
         txtRazonCliente.setText("");
+    }
+    
+    private void LimpiarProveedor() {
+        txtIDProveedor.setText("");
+        txtCIFProveedor.setText("");
+        txtNombreProveedor.setText("");
+        txtTelefonoProveedor.setText("");
+        txtDireccionProveedor.setText("");
+        txtRazonProveedor.setText("");
     }
 
 }
