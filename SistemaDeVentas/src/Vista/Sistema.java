@@ -37,6 +37,22 @@ public class Sistema extends javax.swing.JFrame {
         }
         TableCliente.setModel(modelo);
     }
+    
+    public void ListarProveedor() {
+        List<Proveedor> ListarPr = PrDAO.ListarProveedor();
+        modelo = (DefaultTableModel) TableProveedor.getModel();
+        Object[] ob = new Object[6];
+        for (int i = 0; i < ListarPr.size(); i++) {
+            ob[0] = ListarPr.get(i).getId();
+            ob[1] = ListarPr.get(i).getCif();
+            ob[2] = ListarPr.get(i).getNombre();
+            ob[3] = ListarPr.get(i).getTelefono();
+            ob[4] = ListarPr.get(i).getDireccion();
+            ob[5] = ListarPr.get(i).getRazon();
+            modelo.addRow(ob);
+        }
+        TableProveedor.setModel(modelo);
+    }
 
     public void LimpiarTable() {
 
@@ -184,6 +200,11 @@ public class Sistema extends javax.swing.JFrame {
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/proveedor.png"))); // NOI18N
         jButton3.setText("Proveedor");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(204, 204, 204));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1013,9 +1034,9 @@ public class Sistema extends javax.swing.JFrame {
             LimpiarTable();
             LimpiarCliente();
             ListarCliente();
-            JOptionPane.showMessageDialog(null, "Cliente Registrado");
+            JOptionPane.showMessageDialog(null, "CLIENTE REGISTRADO");
         } else {
-            JOptionPane.showMessageDialog(null, "Existen Campos Vacios");
+            JOptionPane.showMessageDialog(null, "EXISTEN CAMPOS VACIOS");
         }
     }//GEN-LAST:event_btnGuardarClienteActionPerformed
 
@@ -1087,10 +1108,18 @@ public class Sistema extends javax.swing.JFrame {
             pr.setDireccion(txtDireccionProveedor.getText());
             pr.setRazon(txtRazonProveedor.getText());
             PrDAO.RegistrarProveedor(pr);
+            JOptionPane.showMessageDialog(null, "PROVEEDOR REGISTRADO");
         }else {
             JOptionPane.showMessageDialog(null, "EXISTEN CAMPOS VACIOS");
         }
     }//GEN-LAST:event_btnGuardarProveedorActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        LimpiarTable();
+        ListarProveedor();
+        jTabbedPane1.setSelectedIndex(2);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
 
