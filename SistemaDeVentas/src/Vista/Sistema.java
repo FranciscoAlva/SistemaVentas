@@ -644,9 +644,19 @@ public class Sistema extends javax.swing.JFrame {
 
         btnEditarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Actualizar (2).png"))); // NOI18N
         btnEditarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarProveedorActionPerformed(evt);
+            }
+        });
 
         btnNuevoProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/nuevo.png"))); // NOI18N
         btnNuevoProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevoProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoProveedorActionPerformed(evt);
+            }
+        });
 
         btnEliminarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar_1.png"))); // NOI18N
         btnEliminarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1157,6 +1167,31 @@ public class Sistema extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "SELECCIONA UNA FILA");
         }
     }//GEN-LAST:event_btnEliminarProveedorActionPerformed
+
+    private void btnEditarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProveedorActionPerformed
+        
+        if("".equals(txtIDProveedor.getText())){
+            JOptionPane.showMessageDialog(null, "SELECCIONE UNA FILA");
+        }else {
+            if(!"".equals(txtCIFProveedor.getText()) && !"".equals(txtNombreProveedor.getText()) && !"".equals(txtTelefonoProveedor.getText()) && !"".equals(txtDireccionProveedor.getText())  && !"".equals(txtRazonProveedor.getText())){
+               pr.setCif(txtCIFProveedor.getText());
+               pr.setNombre(txtNombreProveedor.getText());
+               pr.setTelefono(txtTelefonoProveedor.getText());
+               pr.setDireccion(txtRazonProveedor.getText());
+               pr.setRazon(txtRazonProveedor.getText());
+               pr.setId(Integer.parseInt(txtIDProveedor.getText()));
+               PrDAO.ModificaProveedor(pr);
+               LimpiarTable();
+               ListarProveedor();
+               LimpiarProveedor();
+            }
+        }
+    }//GEN-LAST:event_btnEditarProveedorActionPerformed
+
+    private void btnNuevoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProveedorActionPerformed
+        
+        LimpiarProveedor();
+    }//GEN-LAST:event_btnNuevoProveedorActionPerformed
 
     public static void main(String args[]) {
 
