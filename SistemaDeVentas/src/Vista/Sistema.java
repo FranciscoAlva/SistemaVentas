@@ -2,6 +2,8 @@ package Vista;
 
 import Modelo.Cliente;
 import Modelo.ClienteDAO;
+import Modelo.Productos;
+import Modelo.ProductosDAO;
 import Modelo.Proveedor;
 import Modelo.ProveedorDAO;
 import java.util.List;
@@ -14,6 +16,8 @@ public class Sistema extends javax.swing.JFrame {
     ClienteDAO client = new ClienteDAO();
     Proveedor pr = new Proveedor();
     ProveedorDAO PrDAO = new ProveedorDAO();
+    Productos pro = new Productos();
+    ProductosDAO proDAO = new ProductosDAO();
     DefaultTableModel modelo = new DefaultTableModel();
 
     public Sistema() {
@@ -795,6 +799,11 @@ public class Sistema extends javax.swing.JFrame {
 
         btnGuardarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/GuardarTodo.png"))); // NOI18N
         btnGuardarProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardarProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarProdActionPerformed(evt);
+            }
+        });
 
         btnEditarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Actualizar (2).png"))); // NOI18N
         btnEditarProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1086,6 +1095,7 @@ public class Sistema extends javax.swing.JFrame {
                 LimpiarTable();
                 LimpiarCliente();
                 ListarCliente();
+                JOptionPane.showMessageDialog(null, "CLIENTE ELIMINADO");
             }
         }
     }//GEN-LAST:event_btnEliminarClienteActionPerformed
@@ -1106,6 +1116,7 @@ public class Sistema extends javax.swing.JFrame {
                 LimpiarTable();
                 LimpiarCliente();
                 ListarCliente();
+                JOptionPane.showMessageDialog(null, "CLIENTE MODIFICADO");
             }else {
                 JOptionPane.showMessageDialog(null,"EXISTEN CAMPOS VACIOS");
             }
@@ -1158,10 +1169,11 @@ public class Sistema extends javax.swing.JFrame {
             int pregunta = JOptionPane.showConfirmDialog(null, "ELIMINAR PROVEEDOR");
             if(pregunta ==  0){
                 int id = Integer.parseInt(txtIDProveedor.getText());
-                PrDAO.EliminarProveedor(id);
+                PrDAO.EliminarProveedor(id);                
                 LimpiarTable();
                 ListarProveedor();
                 LimpiarProveedor();
+                JOptionPane.showMessageDialog(null, "PROVEEDOR ELIMINADO");
             }
         }else{
             JOptionPane.showMessageDialog(null, "SELECCIONA UNA FILA");
@@ -1180,10 +1192,11 @@ public class Sistema extends javax.swing.JFrame {
                pr.setDireccion(txtRazonProveedor.getText());
                pr.setRazon(txtRazonProveedor.getText());
                pr.setId(Integer.parseInt(txtIDProveedor.getText()));
-               PrDAO.ModificaProveedor(pr);
+               PrDAO.ModificaProveedor(pr);               
                LimpiarTable();
                ListarProveedor();
                LimpiarProveedor();
+               JOptionPane.showMessageDialog(null, "PROVEEDOR MODIFICADO REGISTRADO");
             }
         }
     }//GEN-LAST:event_btnEditarProveedorActionPerformed
@@ -1192,6 +1205,21 @@ public class Sistema extends javax.swing.JFrame {
         
         LimpiarProveedor();
     }//GEN-LAST:event_btnNuevoProveedorActionPerformed
+
+    private void btnGuardarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProdActionPerformed
+        
+        if(!"".equals(txtCodigoProd.getText()) && !"".equals(txtDescripcionProd.getText()) && !"".equals(cbxProveedor.getSelectedItem()) && !"".equals(txtCantidadProd.getText()) && !"".equals(txtCantidadProd.getText()) && !"".equals(txtPrecioProd.getText())){
+            pro.setCodigo(txtCodigoProd.getText());
+            pro.setNombre(txtDescripcionProd.getText());
+            pro.setProveedor(cbxProveedor.getSelectedItem().toString());
+            pro.setStock(Integer.parseInt(txtCantidadProd.getText()));
+            pro.setPrecio(Double.parseDouble(txtPrecioProd.getText()));
+            proDAO.RegistrarProductos(pro);
+            JOptionPane.showMessageDialog(null, "PRODUCTO REGISTRADO");
+        }else {
+            JOptionPane.showMessageDialog(null, "EXISTEN CAMPOS VACIOS");
+        }
+    }//GEN-LAST:event_btnGuardarProdActionPerformed
 
     public static void main(String args[]) {
 
