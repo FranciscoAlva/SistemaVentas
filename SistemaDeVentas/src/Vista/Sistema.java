@@ -9,6 +9,7 @@ import Modelo.ProveedorDAO;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 public class Sistema extends javax.swing.JFrame {
 
@@ -24,6 +25,8 @@ public class Sistema extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         txtIDCliente.setVisible(false);
+        AutoCompleteDecorator.decorate(cbxProveedor);
+        proDAO.ConsultarProveedor(cbxProveedor);
     }
 
     public void ListarCliente() {
@@ -215,6 +218,11 @@ public class Sistema extends javax.swing.JFrame {
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/producto.png"))); // NOI18N
         jButton4.setText("Productos");
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(204, 204, 204));
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1220,6 +1228,12 @@ public class Sistema extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "EXISTEN CAMPOS VACIOS");
         }
     }//GEN-LAST:event_btnGuardarProdActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+        LimpiarTable();
+        jTabbedPane1.setSelectedIndex(3);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public static void main(String args[]) {
 
