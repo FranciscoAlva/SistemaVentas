@@ -811,6 +811,11 @@ public class Sistema extends javax.swing.JFrame {
                 "ID", "CODIGO", "DESCRIPCION", "PROVEEDOR", "STOCK", "PRECIO"
             }
         ));
+        TableProd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableProdMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(TableProd);
         if (TableProd.getColumnModel().getColumnCount() > 0) {
             TableProd.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -834,6 +839,11 @@ public class Sistema extends javax.swing.JFrame {
 
         btnEliminarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar_1.png"))); // NOI18N
         btnEliminarProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProdActionPerformed(evt);
+            }
+        });
 
         btnNuevoProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/nuevo.png"))); // NOI18N
         btnNuevoProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1252,6 +1262,35 @@ public class Sistema extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(3);
     }//GEN-LAST:event_btnProductosActionPerformed
 
+    private void TableProdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableProdMouseClicked
+        
+        int fila = TableProd.rowAtPoint(evt.getPoint());
+        txtIDProd.setText(TableProd.getValueAt(fila,0).toString());
+        txtCodigoProd.setText(TableProd.getValueAt(fila,1).toString());
+        txtDescripcionProd.setText(TableProd.getValueAt(fila,2).toString());
+        cbxProveedor.setSelectedItem(TableProd.getValueAt(fila,3).toString());
+        txtCantidadProd.setText(TableProd.getValueAt(fila,4).toString());
+        txtPrecioProd.setText(TableProd.getValueAt(fila,5).toString());
+        
+    }//GEN-LAST:event_TableProdMouseClicked
+
+    private void btnEliminarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProdActionPerformed
+        
+        if(!"".equals(txtIDProd.getText())){
+            int pregunta = JOptionPane.showConfirmDialog(null, "ELIMINAR PRODUCTO");
+            if(pregunta ==  0){
+                int id = Integer.parseInt(txtIDProd.getText());
+                proDAO.EliminarProductos(id);                
+                LimpiarTable();
+                LimpiarProductos();
+                ListarProductos();                
+                JOptionPane.showMessageDialog(null, "PRODUCTO ELIMINADO");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "SELECCIONA UNA FILA");
+        }
+    }//GEN-LAST:event_btnEliminarProdActionPerformed
+
     public static void main(String args[]) {
 
         try {
@@ -1409,6 +1448,15 @@ public class Sistema extends javax.swing.JFrame {
         txtTelefonoProveedor.setText("");
         txtDireccionProveedor.setText("");
         txtRazonProveedor.setText("");
+    }
+    
+    private void LimpiarProductos() {
+        txtIDProd.setText("");
+        txtCodigoProd.setText("");
+        cbxProveedor.setSelectedItem(null);
+        txtDescripcionProd.setText("");
+        txtCantidadProd.setText("");
+        txtPrecioProd.setText("");
     }
 
 }
