@@ -6,6 +6,7 @@ import Modelo.Productos;
 import Modelo.ProductosDAO;
 import Modelo.Proveedor;
 import Modelo.ProveedorDAO;
+import Reportes.Excel;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -855,6 +856,11 @@ public class Sistema extends javax.swing.JFrame {
 
         btnExcelProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/excel.png"))); // NOI18N
         btnExcelProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcelProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelProdActionPerformed(evt);
+            }
+        });
 
         txtIDProd.setEditable(false);
 
@@ -1254,6 +1260,9 @@ public class Sistema extends javax.swing.JFrame {
             pro.setStock(Integer.parseInt(txtCantidadProd.getText()));
             pro.setPrecio(Double.parseDouble(txtPrecioProd.getText()));
             proDAO.RegistrarProductos(pro);
+            LimpiarTable();
+            ListarProductos();
+            LimpiarProductos();
             JOptionPane.showMessageDialog(null, "PRODUCTO REGISTRADO");
         }else {
             JOptionPane.showMessageDialog(null, "EXISTEN CAMPOS VACIOS");
@@ -1316,6 +1325,11 @@ public class Sistema extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnEditarProdActionPerformed
+
+    private void btnExcelProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelProdActionPerformed
+        
+        Excel.reporte();
+    }//GEN-LAST:event_btnExcelProdActionPerformed
 
     public static void main(String args[]) {
 
