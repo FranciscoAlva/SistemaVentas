@@ -836,6 +836,11 @@ public class Sistema extends javax.swing.JFrame {
 
         btnEditarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Actualizar (2).png"))); // NOI18N
         btnEditarProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditarProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarProdActionPerformed(evt);
+            }
+        });
 
         btnEliminarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar_1.png"))); // NOI18N
         btnEliminarProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1230,7 +1235,7 @@ public class Sistema extends javax.swing.JFrame {
                LimpiarTable();
                ListarProveedor();
                LimpiarProveedor();
-               JOptionPane.showMessageDialog(null, "PROVEEDOR MODIFICADO REGISTRADO");
+               JOptionPane.showMessageDialog(null, "PROVEEDOR MODIFICADO");
             }
         }
     }//GEN-LAST:event_btnEditarProveedorActionPerformed
@@ -1290,6 +1295,27 @@ public class Sistema extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "SELECCIONA UNA FILA");
         }
     }//GEN-LAST:event_btnEliminarProdActionPerformed
+
+    private void btnEditarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdActionPerformed
+        
+        if("".equals(txtIDProd.getText())){
+            JOptionPane.showMessageDialog(null, "SELECCIONE UNA FILA");
+        }else {
+            if(!"".equals(txtCodigoProd.getText()) && !"".equals(txtDescripcionProd.getText()) && !"".equals(txtCantidadProd.getText()) && !"".equals(txtPrecioProd.getText())){
+               pro.setCodigo(txtCodigoProd.getText());
+               pro.setNombre(txtDescripcionProd.getText());
+               pro.setProveedor(cbxProveedor.getSelectedItem().toString());
+               pro.setStock(Integer.parseInt(txtCantidadProd.getText()));
+               pro.setPrecio(Double.parseDouble(txtPrecioProd.getText()));
+               pro.setId(Integer.parseInt(txtIDProd.getText()));
+               proDAO.ModificarProductos(pro);               
+               LimpiarTable();
+               ListarProductos();
+               LimpiarProductos();
+               JOptionPane.showMessageDialog(null, "PRODUCTO MODIFICADO");
+            }
+        }
+    }//GEN-LAST:event_btnEditarProdActionPerformed
 
     public static void main(String args[]) {
 
