@@ -7,6 +7,8 @@ import Modelo.ProductosDAO;
 import Modelo.Proveedor;
 import Modelo.ProveedorDAO;
 import Reportes.Excel;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -21,6 +23,7 @@ public class Sistema extends javax.swing.JFrame {
     Productos pro = new Productos();
     ProductosDAO proDAO = new ProductosDAO();
     DefaultTableModel modelo = new DefaultTableModel();
+    int item;
 
     public Sistema() {
         initComponents();
@@ -334,6 +337,18 @@ public class Sistema extends javax.swing.JFrame {
 
         btnEliminarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/eliminar_1.png"))); // NOI18N
         btnEliminarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtCodigoVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodigoVentaKeyPressed(evt);
+            }
+        });
+
+        txtCantidadVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantidadVentaKeyPressed(evt);
+            }
+        });
 
         txtPrecioVenta.setEditable(false);
 
@@ -1330,6 +1345,67 @@ public class Sistema extends javax.swing.JFrame {
         
         Excel.reporte();
     }//GEN-LAST:event_btnExcelProdActionPerformed
+
+    private void txtCodigoVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoVentaKeyPressed
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(!"".equals(txtCodigoVenta.getText())){
+                String cod = txtCodigoVenta.getText();
+                pro = proDAO.BuscarProd(cod);
+               if(pro.getNombre() != null){
+                   txtDescripcionVenta.setText(""+pro.getNombre());
+                   txtPrecioVenta.setText(""+pro.getPrecio());
+                   txtStockDisponible.setText(""+pro.getStock());
+                   txtCantidadVenta.requestFocus();
+               }else {
+                   txtDescripcionVenta.setText("");
+                   txtPrecioVenta.setText("");
+                   txtStockDisponible.setText("");
+                   txtCodigoVenta.requestFocus();
+               }
+            }else {
+                JOptionPane.showMessageDialog(null, "INGRESE EL CODIGO DEL PRODUCTO");
+                txtCodigoVenta.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_txtCodigoVentaKeyPressed
+
+    private void txtCantidadVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadVentaKeyPressed
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(!"".equals(txtCantidadVenta.getText())){
+                String cod = txtCodigoVenta.getText();
+                String descripcion = txtDescripcionVenta.getText();
+                int cant = Integer.parseInt(txtCantidadVenta.getText());
+                double precio = Double.parseDouble(txtPrecioVenta.getText());
+                double total = cant * precio;
+                int stock = Integer.parseInt(txtStockDisponible.getText());
+                if(stock >= cant) {
+                    item = item +1;
+                    modelo = (DefaultTableModel) TableVenta.getModel();
+                    ArrayList lista = new ArrayList();
+                    lista.add(item);
+                    lista.add(cod);
+                    lista.add(descripcion);
+                    lista.add(cant);
+                    lista.add(precio);
+                    lista.add(total);
+                    Object[] O = new Object[5];
+                    O[0] = lista.get(1);
+                    O[1] = lista.get(2);
+                    O[2] = lista.get(3);
+                    O[3] = lista.get(4);
+                    O[4] = lista.get(5);
+                    modelo.addRow(O);
+                    TableVenta.setModel(modelo);
+                }else{
+                    JOptionPane.showMessageDialog(null, "STOCK NO DISPONIBLE");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "INGRESE CANTIDAD");
+            }
+        }
+    }//GEN-LAST:event_txtCantidadVentaKeyPressed
 
     public static void main(String args[]) {
 
