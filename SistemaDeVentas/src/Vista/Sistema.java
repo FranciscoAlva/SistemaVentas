@@ -36,6 +36,9 @@ public class Sistema extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         txtIDCliente.setVisible(false);
+        txtIDPro.setVisible(false);
+        txtIDProd.setVisible(false);
+        txtIDProveedor.setVisible(false);
         AutoCompleteDecorator.decorate(cbxProveedor);
         proDAO.ConsultarProveedor(cbxProveedor);
     }
@@ -272,6 +275,11 @@ public class Sistema extends javax.swing.JFrame {
         btnNuevaVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Nventa.png"))); // NOI18N
         btnNuevaVenta.setText("Nueva Venta");
         btnNuevaVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevaVentaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -745,7 +753,6 @@ public class Sistema extends javax.swing.JFrame {
         txtIDProveedor.setEditable(false);
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel35.setText("ID");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -912,7 +919,6 @@ public class Sistema extends javax.swing.JFrame {
         txtIDProd.setEditable(false);
 
         jLabel36.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel36.setText("ID");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -1412,7 +1418,7 @@ public class Sistema extends javax.swing.JFrame {
                 int stock = Integer.parseInt(txtStockDisponible.getText());
                 if(stock >= cant) {
                     item = item +1;
-                    modelo = (DefaultTableModel) TableVenta.getModel();
+                    DefaultTableModel  tmp = (DefaultTableModel) TableVenta.getModel();
                     for(int i = 0; i <TableVenta.getRowCount(); i++){
                         if (TableVenta.getValueAt(i, 1).equals(txtDescripcionVenta.getText())) {
                             JOptionPane.showMessageDialog(null, "PRODUCTO YA REGISTRADO");
@@ -1432,8 +1438,8 @@ public class Sistema extends javax.swing.JFrame {
                     O[2] = lista.get(3);
                     O[3] = lista.get(4);
                     O[4] = lista.get(5);
-                    modelo.addRow(O);
-                    TableVenta.setModel(modelo);
+                    tmp.addRow(O);
+                    TableVenta.setModel(tmp);
                     TotalPagar();
                     LimpiarVenta();
                     txtCodigoVenta.requestFocus();
@@ -1478,6 +1484,10 @@ public class Sistema extends javax.swing.JFrame {
         ResgistarVenta();
         RegistrarDetalle();
     }//GEN-LAST:event_btnGenerarVentaActionPerformed
+
+    private void btnNuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaVentaActionPerformed
+        jTabbedPane1.setSelectedIndex(0);
+    }//GEN-LAST:event_btnNuevaVentaActionPerformed
 
     public static void main(String args[]) {
 
@@ -1664,6 +1674,7 @@ public class Sistema extends javax.swing.JFrame {
         txtCantidadVenta.setText("");
         txtStockDisponible.setText("");
         txtPrecioVenta.setText("");
+        txtIDVentas.setText("");
     }
     
     private void ResgistarVenta(){
@@ -1677,11 +1688,11 @@ public class Sistema extends javax.swing.JFrame {
     }
     
     private void RegistrarDetalle(){
+        int id = Vdao.IdVenta();
         for (int i = 0; i < TableVenta.getRowCount(); i++) {
             String cod = TableVenta.getValueAt(i, 0).toString();
             int cant = Integer.parseInt(TableVenta.getValueAt(i, 2).toString());
             double precio = Double.parseDouble(TableVenta.getValueAt(i, 2).toString());
-            int id = 1;
             Dv.setCod_pro(cod);
             Dv.setCantidad(cant);
             Dv.setPrecio(precio);
