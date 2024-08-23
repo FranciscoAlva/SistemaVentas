@@ -145,4 +145,26 @@ public class ProductosDAO {
         }
         return producto;
     }
+    
+    public Config BuscarDatos(){
+        
+        Config conf = new Config();
+        String sql = "SELECT * FROM config";
+        try{
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                conf.setId(rs.getInt("id"));
+                conf.setCif(rs.getString("cif"));
+                conf.setNombre(rs.getString("nombre"));
+                conf.setTelefono(rs.getString("telefono"));
+                conf.setDireccion(rs.getString("direccion"));
+                conf.setRazon(rs.getString("razon"));
+            }
+        }catch(SQLException e){
+            System.out.println(e.toString());
+        }
+        return conf;
+    }
 }
