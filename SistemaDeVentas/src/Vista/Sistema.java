@@ -33,6 +33,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -127,7 +129,7 @@ public class Sistema extends javax.swing.JFrame {
         txtDireccionConfig.setText("" + conf.getDireccion());
         txtRazonConfig.setText("" + conf.getRazon());
     }
-    
+
     public void ListarVentas() {
         List<Venta> ListarVenta = Vdao.ListarVentas();
         modelo = (DefaultTableModel) TableVentas.getModel();
@@ -1704,10 +1706,10 @@ public class Sistema extends javax.swing.JFrame {
                 pdf();
                 LimpiarTableVenta();
                 LimpiarClienteVenta();
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(null, "DEBES AGREGAR UN CLIENTE");
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "NO HAY PRODUCTOS EN LA VENTA");
         }
 
@@ -1718,54 +1720,54 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevaVentaActionPerformed
 
     private void txtCodigoVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoVentaKeyTyped
-        
+
         event.numberKeyPress(evt);
     }//GEN-LAST:event_txtCodigoVentaKeyTyped
 
     private void txtDescripcionVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionVentaKeyTyped
-      
-        
+
+
     }//GEN-LAST:event_txtDescripcionVentaKeyTyped
 
     private void txtCantidadVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadVentaKeyTyped
-        
+
         event.numberKeyPress(evt);
     }//GEN-LAST:event_txtCantidadVentaKeyTyped
 
     private void txtPrecioVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioVentaKeyTyped
-        
-        
+
+
     }//GEN-LAST:event_txtPrecioVentaKeyTyped
 
     private void txtStockDisponibleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtStockDisponibleKeyTyped
-        
+
         event.numberKeyPress(evt);
     }//GEN-LAST:event_txtStockDisponibleKeyTyped
 
     private void txtCIFVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCIFVentaKeyTyped
-        
+
     }//GEN-LAST:event_txtCIFVentaKeyTyped
 
     private void txtNombreClienteVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteVentaKeyTyped
-        
+
         event.textKeyPress(evt);
     }//GEN-LAST:event_txtNombreClienteVentaKeyTyped
 
     private void txtTelefonoClienteVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoClienteVentaKeyTyped
-        
+
         event.numberKeyPress(evt);
     }//GEN-LAST:event_txtTelefonoClienteVentaKeyTyped
 
     private void txtDireccionClienteVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionClienteVentaKeyTyped
-        
+
     }//GEN-LAST:event_txtDireccionClienteVentaKeyTyped
 
     private void txtRazonClienteVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonClienteVentaKeyTyped
-       
+
     }//GEN-LAST:event_txtRazonClienteVentaKeyTyped
 
     private void txtDNIClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIClienteKeyTyped
-        
+
     }//GEN-LAST:event_txtDNIClienteKeyTyped
 
     private void txtNombreClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteKeyTyped
@@ -1777,19 +1779,19 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoClienteKeyTyped
 
     private void txtDireccionClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionClienteKeyTyped
-        
+
     }//GEN-LAST:event_txtDireccionClienteKeyTyped
 
     private void txtRazonClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonClienteKeyTyped
-        
+
     }//GEN-LAST:event_txtRazonClienteKeyTyped
 
     private void txtCIFProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCIFProveedorKeyTyped
-        
+
     }//GEN-LAST:event_txtCIFProveedorKeyTyped
 
     private void txtNombreProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProveedorKeyTyped
-        
+
     }//GEN-LAST:event_txtNombreProveedorKeyTyped
 
     private void txtTelefonoProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoProveedorKeyTyped
@@ -1797,11 +1799,11 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoProveedorKeyTyped
 
     private void txtDireccionProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionProveedorKeyTyped
-        
+
     }//GEN-LAST:event_txtDireccionProveedorKeyTyped
 
     private void txtRazonProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonProveedorKeyTyped
-        
+
     }//GEN-LAST:event_txtRazonProveedorKeyTyped
 
     private void txtCodigoProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoProdKeyTyped
@@ -1809,11 +1811,11 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoProdKeyTyped
 
     private void txtDescripcionProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionProdKeyTyped
-        
+
     }//GEN-LAST:event_txtDescripcionProdKeyTyped
 
     private void txtCantidadProdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadProdKeyTyped
-        
+
         event.numberKeyPress(evt);
     }//GEN-LAST:event_txtCantidadProdKeyTyped
 
@@ -1822,24 +1824,24 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPrecioProdKeyTyped
 
     private void btnActualizarConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarConfigActionPerformed
-        
+
         if (!"".equals(txtCIFConfig.getText()) && !"".equals(txtNombreConfig.getText()) && !"".equals(txtTelefonoConfig.getText()) && !"".equals(txtDireccionConfig.getText()) && !"".equals(txtRazonConfig.getText())) {
-                conf.setCif(txtCIFConfig.getText());
-                conf.setNombre(txtNombreConfig.getText());
-                conf.setTelefono(txtTelefonoConfig.getText());
-                conf.setDireccion(txtDireccionConfig.getText());
-                conf.setRazon(txtRazonConfig.getText());
-                conf.setId(Integer.parseInt(txtIDConfig.getText()));
-                proDAO.ModificarDatos(conf);
-                JOptionPane.showMessageDialog(null, "DATOS MODIFICADOS");
-                ListarConfig();
-            } else {
-                JOptionPane.showMessageDialog(null, "EXISTEN CAMPOS VACIOS");
-            }
+            conf.setCif(txtCIFConfig.getText());
+            conf.setNombre(txtNombreConfig.getText());
+            conf.setTelefono(txtTelefonoConfig.getText());
+            conf.setDireccion(txtDireccionConfig.getText());
+            conf.setRazon(txtRazonConfig.getText());
+            conf.setId(Integer.parseInt(txtIDConfig.getText()));
+            proDAO.ModificarDatos(conf);
+            JOptionPane.showMessageDialog(null, "DATOS MODIFICADOS");
+            ListarConfig();
+        } else {
+            JOptionPane.showMessageDialog(null, "EXISTEN CAMPOS VACIOS");
+        }
     }//GEN-LAST:event_btnActualizarConfigActionPerformed
 
     private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
-        
+
         jTabbedPane1.setSelectedIndex(5);
     }//GEN-LAST:event_btnConfigActionPerformed
 
@@ -1855,7 +1857,15 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_TableVentasMouseClicked
 
     private void btnPDFVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFVentasActionPerformed
+
         
+        try {
+            int id = Integer.parseInt(txtIDVentas.getText());
+            File file = new File("src/pdf/venta"+id+".pdf");
+            Desktop.getDesktop().open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btnPDFVentasActionPerformed
 
