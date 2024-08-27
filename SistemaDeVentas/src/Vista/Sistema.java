@@ -2117,7 +2117,7 @@ public class Sistema extends javax.swing.JFrame {
             Document doc = new Document();
             PdfWriter.getInstance(doc, archivo);
             doc.open();
-            Image img = Image.getInstance("src/img/logo.png");
+            Image img = Image.getInstance("src/img/Banner Youtube3.png");
 
             Paragraph fecha = new Paragraph();
             Font negrita = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLUE);
@@ -2128,7 +2128,7 @@ public class Sistema extends javax.swing.JFrame {
             PdfPTable Encabezado = new PdfPTable(4);
             Encabezado.setWidthPercentage(100);
             Encabezado.getDefaultCell().setBorder(0);
-            float[] ColumnaEncabezado = new float[]{20f, 30f, 70f, 40f};
+            float[] ColumnaEncabezado = new float[]{60f, 70f, 110f, 80f};
             Encabezado.setWidths(ColumnaEncabezado);
             Encabezado.setHorizontalAlignment(Element.ALIGN_LEFT);
 
