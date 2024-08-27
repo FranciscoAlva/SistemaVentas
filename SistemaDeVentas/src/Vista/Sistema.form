@@ -52,13 +52,9 @@
                       <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                      <Component id="LabelVendedor" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-                  <Component id="LabelVendedor" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -239,6 +235,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="LabelVendedor">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="VENDEDOR"/>
           </Properties>
         </Component>
@@ -287,8 +284,8 @@
                               </Group>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel6" pref="366" max="32767" attributes="0"/>
-                                  <Component id="txtDescripcionVenta" pref="366" max="32767" attributes="0"/>
+                                  <Component id="jLabel6" pref="375" max="32767" attributes="0"/>
+                                  <Component id="txtDescripcionVenta" pref="375" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">

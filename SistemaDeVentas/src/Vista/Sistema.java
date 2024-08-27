@@ -11,6 +11,7 @@ import Modelo.Proveedor;
 import Modelo.ProveedorDAO;
 import Modelo.Venta;
 import Modelo.VentaDAO;
+import Modelo.login;
 import Reportes.Excel;
 import Reportes.Grafico;
 import com.itextpdf.text.BaseColor;
@@ -62,6 +63,10 @@ public class Sistema extends javax.swing.JFrame {
 
     public Sistema() {
         initComponents();
+    }
+    
+    public Sistema (login priv) {
+        initComponents();
         this.setLocationRelativeTo(null);
         txtIDCliente.setVisible(false);
         txtIDPro.setVisible(false);
@@ -71,7 +76,15 @@ public class Sistema extends javax.swing.JFrame {
         proDAO.ConsultarProveedor(cbxProveedor);
         txtIDConfig.setVisible(false);
         ListarConfig();
-
+        if (priv.getRol().equals("Asistente")) {
+            btnProductos.setEnabled(false);
+            btnProveedor.setEnabled(false);
+            btnVentas.setEnabled(false);
+            btnConfig.setEnabled(false);
+            LabelVendedor.setText(priv.getNombre());
+        }else {
+            LabelVendedor.setText(priv.getNombre());
+        }
     }
 
     public void ListarCliente() {
@@ -359,6 +372,7 @@ public class Sistema extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("BY PAKO");
 
+        LabelVendedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LabelVendedor.setText("VENDEDOR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -376,12 +390,9 @@ public class Sistema extends javax.swing.JFrame {
                     .addComponent(btnConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LabelVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(LabelVendedor)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,8 +579,8 @@ public class Sistema extends javax.swing.JFrame {
                             .addComponent(txtCodigoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                            .addComponent(txtDescripcionVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                            .addComponent(txtDescripcionVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCantidadVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
