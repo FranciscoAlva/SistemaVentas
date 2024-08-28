@@ -17,7 +17,7 @@ public class ClienteDAO {
     
     public boolean RegistarCliente(Cliente cl){
     
-        String sql = "INSERT INTO clientes (dni, nombre, telefono, direccion, razon) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO clientes (dni, nombre, telefono, direccion, email) VALUES (?,?,?,?,?)";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -25,7 +25,7 @@ public class ClienteDAO {
             ps.setString(2, cl.getNombre());
             ps.setString(3, cl.getTelefono());
             ps.setString(4, cl.getDireccion());
-            ps.setString(5, cl.getRazon());
+            ps.setString(5, cl.getEmail());
             ps.execute();
             return true;
         }catch (SQLException e) {
@@ -55,7 +55,7 @@ public class ClienteDAO {
                 cl.setNombre(rs.getString("nombre"));
                 cl.setTelefono(rs.getString("telefono"));
                 cl.setDireccion(rs.getString("direccion"));
-                cl.setRazon(rs.getString("razon"));
+                cl.setEmail(rs.getString("email"));
                 ListaCl.add(cl);
             }
         }catch (SQLException e){
@@ -87,14 +87,14 @@ public class ClienteDAO {
     
     public boolean ModificarCliente(Cliente cl) {
         
-        String sql = "UPDATE clientes SET dni=?, nombre=?, telefono=?, direccion=?, razon=? WHERE id=?";
+        String sql = "UPDATE clientes SET dni=?, nombre=?, telefono=?, direccion=?, email=? WHERE id=?";
         try{
             ps = con.prepareStatement(sql);
             ps.setString(1, cl.getDni());
             ps.setString(2, cl.getNombre());
             ps.setString(3, cl.getTelefono());
             ps.setString(4, cl.getDireccion());
-            ps.setString(5, cl.getRazon());
+            ps.setString(5, cl.getEmail());
             ps.setInt(6, cl.getId());
             ps.execute();
             return true;
@@ -123,7 +123,7 @@ public class ClienteDAO {
                 cl.setNombre(rs.getString("nombre"));
                 cl.setTelefono(rs.getString("telefono"));
                 cl.setDireccion(rs.getString("direccion"));
-                cl.setRazon(rs.getString("razon"));
+                cl.setEmail(rs.getString("email"));
             }
         }catch(SQLException e){
             System.out.println(e.toString());

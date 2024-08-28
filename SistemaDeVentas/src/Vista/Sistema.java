@@ -98,7 +98,7 @@ public class Sistema extends javax.swing.JFrame {
             ob[2] = ListarCl.get(i).getNombre();
             ob[3] = ListarCl.get(i).getTelefono();
             ob[4] = ListarCl.get(i).getDireccion();
-            ob[5] = ListarCl.get(i).getRazon();
+            ob[5] = ListarCl.get(i).getEmail();
             modelo.addRow(ob);
         }
         TableCliente.setModel(modelo);
@@ -114,7 +114,7 @@ public class Sistema extends javax.swing.JFrame {
             ob[2] = ListarPr.get(i).getNombre();
             ob[3] = ListarPr.get(i).getTelefono();
             ob[4] = ListarPr.get(i).getDireccion();
-            ob[5] = ListarPr.get(i).getRazon();
+            ob[5] = ListarPr.get(i).getEmail();
             modelo.addRow(ob);
         }
         TableProveedor.setModel(modelo);
@@ -144,7 +144,7 @@ public class Sistema extends javax.swing.JFrame {
         txtNombreConfig.setText("" + conf.getNombre());
         txtTelefonoConfig.setText("" + conf.getTelefono());
         txtDireccionConfig.setText("" + conf.getDireccion());
-        txtRazonConfig.setText("" + conf.getRazon());
+        txtRazonConfig.setText("" + conf.getEmail());
     }
 
     public void ListarVentas() {
@@ -434,8 +434,10 @@ public class Sistema extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 540));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/encabezado.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/letrasKCM.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 970, 140));
+
+        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Código");
@@ -701,7 +703,7 @@ public class Sistema extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("tab1", jPanel2);
+        jTabbedPane1.addTab("", jPanel2);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setText("DNI/NIE/CIF");
@@ -716,7 +718,7 @@ public class Sistema extends javax.swing.JFrame {
         jLabel17.setText("Direccion");
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel18.setText("Razon Social");
+        jLabel18.setText("Email");
 
         txtDNICliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -882,7 +884,7 @@ public class Sistema extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
         );
 
-        jTabbedPane1.addTab("tab2", jPanel3);
+        jTabbedPane1.addTab("", jPanel3);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setText("CIF");
@@ -897,7 +899,7 @@ public class Sistema extends javax.swing.JFrame {
         jLabel22.setText("Direccion");
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel23.setText("Razon Social");
+        jLabel23.setText("Email");
 
         txtCIFProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -1073,7 +1075,7 @@ public class Sistema extends javax.swing.JFrame {
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab3", jPanel4);
+        jTabbedPane1.addTab("", jPanel4);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel24.setText("Codigo");
@@ -1256,7 +1258,7 @@ public class Sistema extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab4", jPanel5);
+        jTabbedPane1.addTab("", jPanel5);
 
         TableVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1313,7 +1315,7 @@ public class Sistema extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("tab5", jPanel6);
+        jTabbedPane1.addTab("", jPanel6);
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1333,7 +1335,7 @@ public class Sistema extends javax.swing.JFrame {
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel33.setText("RAZON SOCIAL");
+        jLabel33.setText("EMAIL");
 
         btnActualizarConfig.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnActualizarConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Actualizar (2).png"))); // NOI18N
@@ -1417,7 +1419,7 @@ public class Sistema extends javax.swing.JFrame {
                 .addContainerGap(123, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab6", jPanel7);
+        jTabbedPane1.addTab("", jPanel7);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 970, 400));
 
@@ -1431,7 +1433,7 @@ public class Sistema extends javax.swing.JFrame {
             cl.setNombre(txtNombreCliente.getText());
             cl.setTelefono(txtTelefonoCliente.getText());
             cl.setDireccion(txtDireccionCliente.getText());
-            cl.setRazon(txtRazonCliente.getText());
+            cl.setEmail(txtRazonCliente.getText());
             client.RegistarCliente(cl);
             LimpiarTable();
             LimpiarCliente();
@@ -1486,7 +1488,7 @@ public class Sistema extends javax.swing.JFrame {
                 cl.setNombre(txtNombreCliente.getText());
                 cl.setTelefono(txtTelefonoCliente.getText());
                 cl.setDireccion(txtDireccionCliente.getText());
-                cl.setRazon(txtRazonCliente.getText());
+                cl.setEmail(txtRazonCliente.getText());
                 cl.setId(Integer.parseInt(txtIDCliente.getText()));
                 client.ModificarCliente(cl);
                 LimpiarTable();
@@ -1510,7 +1512,7 @@ public class Sistema extends javax.swing.JFrame {
             pr.setNombre(txtNombreProveedor.getText());
             pr.setTelefono(txtTelefonoProveedor.getText());
             pr.setDireccion(txtDireccionProveedor.getText());
-            pr.setRazon(txtRazonProveedor.getText());
+            pr.setEmail(txtRazonProveedor.getText());
             PrDAO.RegistrarProveedor(pr);
             LimpiarTable();
             ListarProveedor();
@@ -1566,7 +1568,7 @@ public class Sistema extends javax.swing.JFrame {
                 pr.setNombre(txtNombreProveedor.getText());
                 pr.setTelefono(txtTelefonoProveedor.getText());
                 pr.setDireccion(txtRazonProveedor.getText());
-                pr.setRazon(txtRazonProveedor.getText());
+                pr.setEmail(txtRazonProveedor.getText());
                 pr.setId(Integer.parseInt(txtIDProveedor.getText()));
                 PrDAO.ModificaProveedor(pr);
                 LimpiarTable();
@@ -1748,7 +1750,7 @@ public class Sistema extends javax.swing.JFrame {
                     txtNombreClienteVenta.setText("" + cl.getNombre());
                     txtTelefonoClienteVenta.setText("" + cl.getTelefono());
                     txtDireccionClienteVenta.setText("" + cl.getDireccion());
-                    txtRazonClienteVenta.setText("" + cl.getRazon());
+                    txtRazonClienteVenta.setText("" + cl.getEmail());
                 } else {
                     txtCIFVenta.setText("");
                     JOptionPane.showMessageDialog(null, "CLIENTE NO EXISTE");
@@ -1891,7 +1893,7 @@ public class Sistema extends javax.swing.JFrame {
             conf.setNombre(txtNombreConfig.getText());
             conf.setTelefono(txtTelefonoConfig.getText());
             conf.setDireccion(txtDireccionConfig.getText());
-            conf.setRazon(txtRazonConfig.getText());
+            conf.setEmail(txtRazonConfig.getText());
             conf.setId(Integer.parseInt(txtIDConfig.getText()));
             proDAO.ModificarDatos(conf);
             JOptionPane.showMessageDialog(null, "DATOS MODIFICADOS");
@@ -2218,7 +2220,7 @@ public class Sistema extends javax.swing.JFrame {
             String ra = txtRazonConfig.getText();;
 
             Encabezado.addCell("");
-            Encabezado.addCell("CIF: " + cif + "\nNombre: " + nom + "\nTelefono: " + tel + "\nDireccion: " + dir + "\nRazon: " + ra);
+            Encabezado.addCell("CIF: " + cif + "\nNombre: " + nom + "\nTelefono: " + tel + "\nDireccion: " + dir + "\nEmail: " + ra);
             Encabezado.addCell(fecha);
             doc.add(Encabezado);
 
@@ -2295,8 +2297,9 @@ public class Sistema extends javax.swing.JFrame {
 
             Paragraph firma = new Paragraph();
             firma.add(Chunk.NEWLINE);
-            firma.add("Cancelacion y Firma\n\n");
-            firma.add("------------------------");
+            firma.add("Firma\n\n");
+            firma.add("------------------------\n\n");
+            firma.add("No tiene valor fiscal");
             firma.setAlignment(Element.ALIGN_CENTER);
             doc.add(firma);
 

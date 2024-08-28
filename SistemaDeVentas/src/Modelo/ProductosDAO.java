@@ -160,7 +160,7 @@ public class ProductosDAO {
                 conf.setNombre(rs.getString("nombre"));
                 conf.setTelefono(rs.getString("telefono"));
                 conf.setDireccion(rs.getString("direccion"));
-                conf.setRazon(rs.getString("razon"));
+                conf.setEmail(rs.getString("email"));
             }
         }catch(SQLException e){
             System.out.println(e.toString());
@@ -170,14 +170,14 @@ public class ProductosDAO {
     
     public boolean ModificarDatos(Config conf) {
         
-        String sql = "UPDATE config SET cif=?, nombre=?, telefono=?, direccion=?, razon=? WHERE id=?";
+        String sql = "UPDATE config SET cif=?, nombre=?, telefono=?, direccion=?, email=? WHERE id=?";
         try{
             ps = con.prepareStatement(sql);
             ps.setString(1, conf.getCif());
             ps.setString(2, conf.getNombre());
             ps.setString(3, conf.getTelefono());
             ps.setString(4, conf.getDireccion());
-            ps.setString(5, conf.getRazon());
+            ps.setString(5, conf.getEmail());
             ps.setInt(6, conf.getId());
             ps.execute();
             return true;

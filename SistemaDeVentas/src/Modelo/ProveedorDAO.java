@@ -16,7 +16,7 @@ public class ProveedorDAO {
 
     public boolean RegistrarProveedor(Proveedor pr){
         
-        String sql = "INSERT INTO proveedor (cif, nombre, telefono, direccion, razon) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO proveedor (cif, nombre, telefono, direccion, email) VALUES (?,?,?,?,?)";
         try{
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -24,7 +24,7 @@ public class ProveedorDAO {
             ps.setString(2, pr.getNombre());
             ps.setString(3, pr.getTelefono());
             ps.setString(4, pr.getDireccion());
-            ps.setString(5, pr.getRazon());
+            ps.setString(5, pr.getEmail());
             ps.execute();
             return true;
         }catch(SQLException e){
@@ -55,7 +55,7 @@ public class ProveedorDAO {
                 pr.setNombre(rs.getString("nombre"));
                 pr.setTelefono(rs.getString("telefono"));
                 pr.setDireccion(rs.getString("direccion"));
-                pr.setRazon(rs.getString("razon"));
+                pr.setEmail(rs.getString("email"));
                 Listapr.add(pr);
             }
         }catch(SQLException e){
@@ -88,7 +88,7 @@ public class ProveedorDAO {
     
     public boolean ModificaProveedor(Proveedor pr) {
         
-        String sql = "UPDATE proveedor SET cif=?,  nombre=?, telefono=?, direccion=?, razon=? WHERE id=?";
+        String sql = "UPDATE proveedor SET cif=?,  nombre=?, telefono=?, direccion=?, email=? WHERE id=?";
         try{
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -96,7 +96,7 @@ public class ProveedorDAO {
             ps.setString(2, pr.getNombre());
             ps.setString(3, pr.getTelefono());
             ps.setString(4, pr.getDireccion());
-            ps.setString(5, pr.getRazon());
+            ps.setString(5, pr.getEmail());
             ps.setInt(6, pr.getId());
             ps.execute();
             return true;

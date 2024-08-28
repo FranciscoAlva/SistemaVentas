@@ -8,18 +8,18 @@ public class Proveedor {
     private String nombre;
     private String telefono;
     private String direccion;
-    private String razon;
+    private String email;
 
     public Proveedor() {
     }
 
-    public Proveedor(int id, String cif, String nombre, String telefono, String direccion, String razon) {
+    public Proveedor(int id, String cif, String nombre, String telefono, String direccion, String email) {
         this.id = id;
         this.cif = cif;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.razon = razon;
+        this.email = email;
     }
 
     public int getId() {
@@ -62,12 +62,12 @@ public class Proveedor {
         this.direccion = direccion;
     }
 
-    public String getRazon() {
-        return razon;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRazon(String razon) {
-        this.razon = razon;
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     
