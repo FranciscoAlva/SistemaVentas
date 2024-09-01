@@ -76,7 +76,7 @@ public class Sistema extends javax.swing.JFrame {
         proDAO.ConsultarProveedor(cbxProveedor);
         txtIDConfig.setVisible(false);
         ListarConfig();
-        if (priv.getRol().equals("Usuario")) {
+        if (priv.getRol().equals("Asistente")) {
             btnProductos.setEnabled(false);
             btnProveedor.setEnabled(false);
             btnVentas.setEnabled(false);
@@ -2202,7 +2202,7 @@ public class Sistema extends javax.swing.JFrame {
             Font negrita = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLUE);
             fecha.add(Chunk.NEWLINE);
             Date date = new Date();
-            fecha.add("Factura:" + id + "1\n" + "Fecha: " + new SimpleDateFormat("dd-mm-yyyy").format(date) + "\n\n");
+            fecha.add("Factura:" + id + "\n" + "Fecha: " + new SimpleDateFormat("dd-MM-yyyy").format(date) + "\n\n");
 
             PdfPTable Encabezado = new PdfPTable(4);
             Encabezado.setWidthPercentage(100);
